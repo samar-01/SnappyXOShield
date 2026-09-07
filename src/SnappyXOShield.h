@@ -61,14 +61,25 @@ void turnLeft() { _motorWrite(-255, 255); }
 void turnLeft(int speed) { _motorWrite(-speed, speed); }
 void turnRight() { _motorWrite(255, -255); }
 void turnRight(int speed) { _motorWrite(speed, -speed); }
-void pause() { _motorWrite(0, 0); }
-void brake() { _motorWrite(0, 0); }
 
-// Joystick drive: throttle and steering each in range -512 to +512.
-// Mixes them as a differential drive: left = throttle + steering, right =
-// throttle - steering. Normalizes so the ratio is preserved when the sum
-// exceeds the input range. Zero throttle + nonzero steering gives smooth
-// in-place turns with no dead zone.
+// Coasting brake: slows down slowly to a stop
+void pause() {
+	analogWrite(motorLeft_Enable, 0);
+	analogWrite(motorRight_Enable, 0);
+}
+
+// Active brake: quickly stops motors
+void brake() {
+	digitalWrite(motorLeft_InputOne, HIGH);
+	digitalWrite(motorLeft_InputTwo, HIGH);
+	analogWrite(motorLeft_Enable, 255);
+	digitalWrite(motorRight_InputOne, HIGH);
+	digitalWrite(motorRight_InputTwo, HIGH);
+	analogWrite(motorRight_Enable, 255);
+}
+
+// Differential drive: throttle and steering each in range -512 to +512.
+// Zero throttle + nonzero steering does in place turns.
 void drive(int throttle, int steering) {
 	int left = throttle + steering;
 	int right = throttle - steering;

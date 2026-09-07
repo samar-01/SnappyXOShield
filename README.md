@@ -1,12 +1,10 @@
 # SnappyXOShield
 
-An Arduino library for simplified motor control with the [SnappyXO Motor Shield](https://github.com/samar-01/SnappyXOShield).
+An Arduino library for simplified motor control with the SnappyXO Motor Shield.
 
 ## Installation
 
-1. Download the repository as a ZIP.
-2. In the Arduino IDE: **Sketch → Include Library → Add .ZIP Library…** and select the downloaded file.
-3. Alternatively, clone this repo into your Arduino `libraries/` folder.
+In the Arduino IDE, open **Sketch → Include Library → Manage Libraries…**, search for **SnappyXOShield**, and click Install.
 
 ## Pin Mapping
 
@@ -39,7 +37,8 @@ Call once in `setup()`. All parameters are optional and default to `false`.
 | `turnLeft(speed)`     | Spin left in place at `speed` (0–255)            |
 | `turnRight()`         | Spin right in place at full speed                |
 | `turnRight(speed)`    | Spin right in place at `speed` (0–255)           |
-| `pause()` / `brake()` | Stop both motors                                 |
+| `pause()`             | Coasting stop — gradually slows to a halt        |
+| `brake()`             | Active stop — immediately locks both motors      |
 
 ### `drive(throttle, steering)`
 
