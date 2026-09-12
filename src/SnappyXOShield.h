@@ -3,15 +3,14 @@
 
 #include <Arduino.h>
 
-// Motor Left Pins
-const int motorLeft_InputOne = 4;
-const int motorLeft_InputTwo = 7;
-const int motorLeft_Enable = 5;
-
-// Motor Right Pins
-const int motorRight_InputOne = 8;
-const int motorRight_InputTwo = 9;
-const int motorRight_Enable = 6;
+// Motor Pins
+#ifdef SNAPPYXO_SHIELDV2
+const int motorLeft_InputOne = 4,  motorLeft_InputTwo = 5,  motorLeft_Enable = 6;
+const int motorRight_InputOne = 12, motorRight_InputTwo = 13, motorRight_Enable = 11;
+#else
+const int motorLeft_InputOne = 4,  motorLeft_InputTwo = 7,  motorLeft_Enable = 5;
+const int motorRight_InputOne = 8,  motorRight_InputTwo = 9,  motorRight_Enable = 6;
+#endif
 
 // Inversion flags — set via initMotors(invertL, invertR, invertLR)
 static bool motorInvertL = false;

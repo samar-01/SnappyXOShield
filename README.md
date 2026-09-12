@@ -8,10 +8,28 @@ In the Arduino IDE, open **Sketch → Include Library → Manage Libraries…**,
 
 ## Pin Mapping
 
+**Default (Shield v3.0.0+)**
+
 | Motor | IN1 | IN2 | Enable (PWM) |
 |-------|-----|-----|--------------|
 | Left  | 4   | 7   | 5            |
 | Right | 8   | 9   | 6            |
+
+**Shield v2.0.0+ — define `SNAPPYXO_SHIELDV2` before including the library**
+
+| Motor | IN1 | IN2 | Enable (PWM) |
+|-------|-----|-----|--------------|
+| Left  | 4   | 5   | 6            |
+| Right | 12  | 13  | 11           |
+
+To target a v2 shield, add `#define SNAPPYXO_SHIELDV2` before the `#include`:
+
+```cpp
+#define SNAPPYXO_SHIELDV2
+#include <SnappyXOShield.h>
+```
+
+See [`examples/BasicMotorControl_ShieldV2/`](examples/BasicMotorControl_ShieldV2/BasicMotorControl_ShieldV2.ino) for a full example.
 
 ## API
 
@@ -80,4 +98,5 @@ See [`examples/BasicMotorControl/`](examples/BasicMotorControl/BasicMotorControl
 
 ## Compatibility
 
-- **SnappyXO Motor Shield:** v3.0.0+
+- **SnappyXO Motor Shield:** v3.0.0+ (default)
+- **SnappyXO Motor Shield:** v2.0.0+ (if using `#define SNAPPYXO_SHIELDV2`)
